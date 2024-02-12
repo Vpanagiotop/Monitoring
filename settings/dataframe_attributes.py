@@ -21,10 +21,21 @@ class DataModelEnvelope:
         WeldingPerformanceAttributes.heat_input,
     ]
     layer = part + [TimeAttributes.elapsed_time, TimeAttributes.delta_time]
-
     welding_performance = [
         WeldingPerformanceAttributes.current,
         WeldingPerformanceAttributes.voltage,
         WeldingPerformanceAttributes.power,
         WeldingPerformanceAttributes.heat_input
     ]
+
+class DataFrameSchemas:
+    overview = [
+        FileNameAttributes.part,
+        ExtraAttributes.layers_number,
+        ExtraAttributes.records,
+        TimeAttributes.production_time,
+        TimeAttributes.total_tile,
+        SpeedAttributes.travel_speed,
+        SpeedAttributes.wire_feed_speed,
+        SpeedAttributes.speed_ratio,
+    ] 
