@@ -1,7 +1,6 @@
-import configurations
+import settings.project_settings as project_settings
 
-
-class ConfigurationManager:
+class DataProcessing:
     def __init__(self, folder_name=None, csv_file=None, iteration=None, df=None):
         self.folder_name = folder_name
         self.csv_file = csv_file
@@ -30,18 +29,18 @@ class ConfigurationManager:
         return self.df["Current"] * self.df["Voltage"]
 
     def assign_travel_speed(self):
-        return configurations.travel_speed[self.folder_name]
+        return project_settings.travel_speed[self.folder_name]
 
     def assign_wire_feed_speed(self):
-        return configurations.wire_feed_speed[self.folder_name]
+        return project_settings.wire_feed_speed[self.folder_name]
 
     def calculate_speed_ratio(self):
-        TS = configurations.travel_speed[self.folder_name]
-        WFS = configurations.wire_feed_speed[self.folder_name]
+        TS = project_settings.travel_speed[self.folder_name]
+        WFS = project_settings.wire_feed_speed[self.folder_name]
         return round(WFS / TS * 1000 / 60,2)
 
     def calculate_heat_input(self):
-        travel_speed = configurations.travel_speed[self.folder_name]
+        travel_speed = project_settings.travel_speed[self.folder_name]
         heat_input = self.df["Current"] * self.df["Voltage"] / travel_speed
         return heat_input
 
@@ -63,18 +62,18 @@ class ConfigurationManager:
 
 
 function_mapping = {
-    "Part": ConfigurationManager.assign_part_tag,
-    "Layer Value": ConfigurationManager.calculate_layer_value,
-    "Layer Number": ConfigurationManager.calculate_layer_number,
-    "Timestamp": ConfigurationManager.assign_timestamp,
-    "Current": ConfigurationManager.assign_current,
-    "Voltage": ConfigurationManager.assign_voltage,
-    "Power": ConfigurationManager.calculate_power,
-    "Travel Speed": ConfigurationManager.assign_travel_speed,
-    "Wire Feed Speed": ConfigurationManager.assign_wire_feed_speed,
-    "WFS / TS": ConfigurationManager.calculate_speed_ratio,
-    "Heat Input": ConfigurationManager.calculate_heat_input,
-    "Elapsed Time": ConfigurationManager.calculate_elapsed_time,
-    "Delta Time": ConfigurationManager.calculate_delta_time,
-    "Records": ConfigurationManager.calculate_records,
+    "Part": DataProcessing.assign_part_tag,
+    "Layer Value": DataProcessing.calculate_layer_value,
+    "Layer Number": DataProcessing.calculate_layer_number,
+    "Timestamp": DataProcessing.assign_timestamp,
+    "Current": DataProcessing.assign_current,
+    "Voltage": DataProcessing.assign_voltage,
+    "Power": DataProcessing.calculate_power,
+    "Travel Speed": DataProcessing.assign_travel_speed,
+    "Wire Feed Speed": DataProcessing.assign_wire_feed_speed,
+    "WFS / TS": DataProcessing.calculate_speed_ratio,
+    "Heat Input": DataProcessing.calculate_heat_input,
+    "Elapsed Time": DataProcessing.calculate_elapsed_time,
+    "Delta Time": DataProcessing.calculate_delta_time,
+    "Records": DataProcessing.calculate_records,
 }
