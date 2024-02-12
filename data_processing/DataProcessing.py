@@ -1,4 +1,4 @@
-import settings.project_settings as project_settings
+import user_preferences.adjustable_parameters as project_settings
 
 class DataProcessing:
     def __init__(self, folder_name=None, csv_file=None, iteration=None, df=None):

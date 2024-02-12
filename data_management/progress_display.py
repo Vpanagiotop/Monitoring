@@ -1,5 +1,6 @@
 import sys
 
+
 def progress_bar(iteration, total, prefix="Progress:", length=20, fill="█"):
     percent = ("{0:.1f}").format(100 * (iteration / float(total)))
     filled_length = int(length * iteration // total)
@@ -15,7 +16,11 @@ def progress_bar(iteration, total, prefix="Progress:", length=20, fill="█"):
 
 
 def section_messages(messages):
-    print("\n------------------------------------------------------------------------------------")
+    print(
+        "\n------------------------------------------------------------------------------------"
+    )
     for message in messages:
         print(message)
-    print("------------------------------------------------------------------------------------")
+    print(
+        "------------------------------------------------------------------------------------"
+    )

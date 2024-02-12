@@ -1,7 +1,7 @@
 from datetime import timedelta
-from settings.dataframe_attributes import DataModelEnvelope
 from data_processing.ColumnStatistics import ColumnStatistics
 from data_processing.DataProcessing import DataProcessing
+from user_preferences.data_templates import DataModelEnvelope
 
 def assign_welding_performance(instance, df):
     setattr(instance, "performance", type("Performance", (object,), {}))
@@ -15,13 +15,13 @@ def assign_welding_performance(instance, df):
     return instance.performance
 
 
-def generate_overview(instance, df):
+def assign_overview_performance(instance, df):
     part = int(df["Part"].iloc[0])
     folder_name = f"part_0{part}"
 
     configuration_data = DataProcessing(folder_name=folder_name, df=df)
 
-    setattr(instance, "overview", type("Overview", (object,), {}))
+    setattr(instance, "overview", type("Performance", (object,), {}))
 
     instance.overview.part = part
     instance.overview.folder_name = folder_name
@@ -32,8 +32,8 @@ def generate_overview(instance, df):
 
     instance.overview.records = configuration_data.calculate_records()
 
-    from Part import Part
-    from Layer import Layer
+    from data_processing.Part import Part
+    from data_processing.Layer import Layer
 
     if isinstance(instance, Part):
         instance.overview.total_time = df["Timestamp"].max() - df["Timestamp"].min()

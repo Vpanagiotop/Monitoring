@@ -1,7 +1,9 @@
 import os
 import zipfile
-from utilities.file_utilities import ensure_folder_exists
-from utilities.progress_display import progress_bar
+from data_processing.Layer import Layer
+from data_management.folder_utilities import ensure_folder_exists
+from data_management.progress_display import progress_bar
+
 
 def arrange_data(data_directory, output_directory):
     file_list = [
@@ -24,3 +26,17 @@ def arrange_data(data_directory, output_directory):
         progress_bar(iter, len(file_list), prefix=f"Arrange Data:")
 
     return sorted(list(set(created_folders)))
+
+
+def group_data_by_layer(part, folder_name, df, group_by_value):
+
+    grouped_df = df.groupby(group_by_value)
+    grouped_data = []
+    iterations = len(df[group_by_value].unique())
+
+    print(f"Part {part}: Grouping by {group_by_value}")
+
+    for layer_number, layer in grouped_df:
+        progress_bar(layer_number, iterations, f"Layer {layer_number}/{iterations}:")
+        grouped_data.append(Layer(layer, folder_name))
+    return grouped_data

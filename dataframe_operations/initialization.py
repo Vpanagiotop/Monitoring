@@ -1,9 +1,9 @@
 import os
 import pickle
 import pandas as pd
-from utilities.progress_display import progress_bar, section_messages
+from data_management.progress_display import progress_bar, section_messages
 from data_processing.DataProcessing import DataProcessing
-from settings.dataframe_attributes import DataModelEnvelope
+from user_preferences.data_templates import DataModelEnvelope
 
 
 def initial_dataframe(output_directory, folder_name, replace="No"):

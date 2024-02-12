@@ -1,6 +1,5 @@
-import progress_utilities
 from data_processing import performance_assignment
-from settings.dataframe_attributes import DataModelEnvelope
+from user_preferences.data_templates import DataModelEnvelope
 from data_processing.DataProcessing import DataProcessing
 
 class Layer:
@@ -10,7 +9,7 @@ class Layer:
         configuration_data.add_columns_from_mapping(DataModelEnvelope.layer)
 
         performance_assignment.assign_welding_performance(self, self.df)
-        performance_assignment.generate_overview(self, df)
+        performance_assignment.assign_overview_performance(self, df)
 
         self.layer_number = df["Layer Number"].iloc[0]
         self.layer_value = df["Layer Value"].iloc[0]

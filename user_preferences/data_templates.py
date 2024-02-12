@@ -1,5 +1,4 @@
-from settings.data_attributes import *
-
+from user_preferences.data_attributes import *
 
 class DataModelEnvelope:
     initial = [
@@ -21,15 +20,17 @@ class DataModelEnvelope:
         WeldingPerformanceAttributes.heat_input,
     ]
     layer = part + [TimeAttributes.elapsed_time, TimeAttributes.delta_time]
+
     welding_performance = [
         WeldingPerformanceAttributes.current,
         WeldingPerformanceAttributes.voltage,
         WeldingPerformanceAttributes.power,
-        WeldingPerformanceAttributes.heat_input
+        WeldingPerformanceAttributes.heat_input,
     ]
 
+
 class DataFrameSchemas:
-    overview = [
+    report = [
         FileNameAttributes.part,
         ExtraAttributes.layers_number,
         ExtraAttributes.records,
@@ -37,5 +38,19 @@ class DataFrameSchemas:
         TimeAttributes.total_tile,
         SpeedAttributes.travel_speed,
         SpeedAttributes.wire_feed_speed,
+        SpeedAttributes.speed_ratio
+    ]
+    layerDetails = [
+        FileNameAttributes.part,
+        FileNameAttributes.layer_value,
+        FileNameAttributes.layer_number,
+        ExtraAttributes.records,
+        TimeAttributes.production_time,
+        SpeedAttributes.travel_speed,
+        SpeedAttributes.wire_feed_speed,
         SpeedAttributes.speed_ratio,
-    ] 
+    ]
+    statistic_value = {
+        "layerDetails" : "mean"
+    }
+    

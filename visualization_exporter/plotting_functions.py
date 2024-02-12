@@ -1,5 +1,5 @@
-from utilities.data_formatting import add_units_to_label
-from data_visualization.plot_utilities import *
+from data_management.data_formatting import add_units_to_label
+from visualization_exporter.plot_utilities import *
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -31,12 +31,12 @@ def barplot(dataset, x_column, y_column):
     y_label = add_units_to_label(y_column)
     title = f"{dataset.tag} - Bar plot of {y_column}"
 
-    plt.bar(dataset.layer_info_dataframe[x_column], dataset.layer_info_dataframe[y_column])
+    plt.bar(dataset.layer_details[x_column], dataset.layer_details[y_column])
 
-    add_mean_horizontal_line(dataset.layer_info_dataframe[y_column].mean(), y_label)
+    add_mean_horizontal_line(dataset.layer_details[y_column].mean(), y_label)
     set_plot_attributes(title, x_label, y_label)
 
-def histogram(dataset, column, frac = 0.1):
+def histogram(dataset, column, frac = 0.01):
     plt.figure(figsize=(10, 6))
 
     subsampled_data = dataset.df.sample(frac=frac)
