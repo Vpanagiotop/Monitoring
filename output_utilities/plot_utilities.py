@@ -1,5 +1,5 @@
+import os
 import matplotlib.pyplot as plt
-
 def add_mean_horizontal_line(mean, y_label):
     plt.axhline(
         mean,
@@ -9,7 +9,7 @@ def add_mean_horizontal_line(mean, y_label):
     )
 
 
-def set_plot_attributes(title, x_label, y_label):
+def set_plot_attributes(fig, title, x_label, y_label):
     plt.title(title, fontweight="bold", fontsize=12)
     plt.xlabel(x_label, fontweight="bold", fontsize=12)
     plt.ylabel(y_label, fontweight="bold", fontsize=12)
@@ -22,4 +22,11 @@ def set_plot_attributes(title, x_label, y_label):
         plt.legend()
 
     plt.grid()
-    plt.show()
+    # plt.show(fig)
+
+
+def save_figure(fig, dataset, title, save):
+    if save == "Yes":
+        save_path = os.path.join(dataset.output_directory, title + ".png")
+        fig.savefig(save_path)
+        plt.close(fig)

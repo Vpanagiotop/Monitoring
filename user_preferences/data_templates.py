@@ -53,4 +53,14 @@ class DataFrameSchemas:
     statistic_value = {
         "layerDetails" : "mean"
     }
+    layer_report = [
+        FileNameAttributes.part,
+        FileNameAttributes.layer_number,
+        FileNameAttributes.layer_value,
+        ExtraAttributes.records,
+        TimeAttributes.production_time,
+        SpeedAttributes.travel_speed,
+        SpeedAttributes.wire_feed_speed,
+        SpeedAttributes.speed_ratio,
+    ]
     

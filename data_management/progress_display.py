@@ -1,5 +1,5 @@
 import sys
-
+import itertools
 
 def progress_bar(iteration, total, prefix="Progress:", length=20, fill="█"):
     percent = ("{0:.1f}").format(100 * (iteration / float(total)))
